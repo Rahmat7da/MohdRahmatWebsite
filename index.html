@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<title>MOHD RAHMAT - Portfolio</title>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  body {
+    background: #121212;
+    color: #eee;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+  }
+  a {
+    color: #61dafb;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #21a1f1;
+  }
+  /* Container */
+  .container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    flex-grow: 1;
+  }
+
+  header {
+    background: url('sb-blog-programming.png') no-repeat center center/cover;
+    background-size: cover;
+    height: 380px;
+    position: relative;
+    border-radius: 10px;
+    margin-top: 1rem;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.7);
+  }
+  
+  header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(18,18,18,0.7);
+    border-radius: 10px;
+  }
+
+  header .intro {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #61dafb;
+    text-align: center;
+  }
+
+  header .intro h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.4rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-shadow: 0 0 7px #61dafb;
+  }
+  header .intro h2 {
+    font-weight: 400;
+    font-size: 1.3rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+  header .intro a.btn-primary {
+    background: #61dafb;
+    color: #121212;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 5px 15px #61dafbaa;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+  }
+  header .intro a.btn-primary:hover {
+    background: #21a1f1;
+    color: #fff;
+  }
+  main section {
+    margin-top: 3rem;
+  }
+  main section h3 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    color: #61dafb;
+    text-shadow: 0 0 7px #61dafbaa;
+  }
+  main section .about-text {
+    margin: 0 auto;
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.7;
+    text-align: center;
+  }
+  /* Skills */
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 1rem;
+  }
+  .skill-item {
+    background: #222;
+    border-radius: 10px;
+    width: 135px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 15px #0008;
+    transition: transform 0.3s ease;
+  }
+  .skill-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px #61dafbcc;
+  }
+  .skill-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    color: #61dafb;
+  }
+  .skill-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #ddd;
+  }
+  /* Projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .project-card {
+    background: #222;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px #000a;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px #61dafbcc;
+  }
+  .project-image {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    background: #333;
+  }
+  .project-content {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .project-title {
+    color: #61dafb;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    color: #bbb;
+    flex-grow: 1;
+  }
+  .project-link {
+    margin-top: 0.8rem;
+    color: #21a1f1;
+    font-weight: 600;
+    text-align: right;
+  }
+  .project-link:hover {
+    text-decoration: underline;
+  }
+  /* Contact Section */
+  form {
+    max-width: 480px;
+    margin: 1rem auto 4rem auto;
+    background: #222;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 12px 20px #000a;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #61dafb;
+    font-weight: 600;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    background: #333;
+    color: #eee;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+  input[type="submit"] {
+    background: #61dafb;
+    color: #121212;
+    border: none;
+    padding: 0.8rem 1.7rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px #61dafbaa;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  input[type="submit"]:hover {
+    background: #21a1f1;
+    color: #fff;
+  }
+  /* Footer */
+  footer {
+    text-align: center;
+    color: #555;
+    padding: 1rem 0 1.5rem;
+    font-size: 0.9rem;
+  }
+  /* Responsive and mobile */
+  @media (max-width: 600px) {
+    header {
+      height: 300px;
+    }
+    header .intro h1 {
+      font-size: 2rem;
+    }
+    header .intro h2 {
+      font-size: 1rem;
+    }
+    .skill-item {
+      width: 110px;
+      height: 105px;
+    }
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .container {
+      width: 95%;
+      margin-bottom: 2rem;
+    }
+    form {
+      width: 100%;
+      padding: 1rem 1rem 2rem 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+ 
+  <div class="intro" role="banner">
+    <h1>MOHD RAHMAT</h1>
+    <h2>DATA ANALYST / WEB DESIGNER</h2>
+    
+<a href="https://drive.google.com/uc?export=download&id=1TGkAQgac65viA9V4BNOcydVaZV3wGcqP" download target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="">My Resume</a><br>
+    <a href="#projects" class="btn-primary" aria-label="See my projects">See my Projects</a>
+  </div>
+</header>
+<main class="container" role="main" tabindex="-1">
+  <section id="about" aria-labelledby="about-title">
+    <h3 id="about-title">About Me</h3>
+    <p class="about-text">HI! I’M MOHD RAHMAT, A Versatile Data Analyst & Web Designer passionate about transforming data and ideas into impactful solutions. I combine analytical thinking with creative design to deliver clear insights and stunning user experiences.
+With expertise in Python, SQL, Excel, and Power BI, I dive deep into data to uncover trends and help businesses make smarter decisions. At the same time, I craft clean, modern, and responsive websites that engage users and showcase information effectively.
+Whether it’s building dynamic dashboards or designing intuitive interfaces, I’m driven by curiosity, precision, and a love for problem-solving.
+Let’s connect and create something amazing together—both through data and design!.</p>
+  </section>
+  
+  <section id="skills" aria-labelledby="skills-title">
+    <h3 id="skills-title">Skills & Technologies</h3>
+    <div class="skills-list" role="list">
+      <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">💻</div>
+        <div class="skill-name">HTML5</div>
+      </div>
+      <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">🎨</div>
+        <div class="skill-name">CSS3</div>
+      </div>
+      <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">⚛️</div>
+        <div class="skill-name">JavaScript</div>
+      </div>
+      <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">📱</div>
+        <div class="skill-name">Responsive Design</div>
+      </div>
+      <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">📊</div>
+        <div class="skill-name">EXCEL</div>
+      </div>
+      <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">🧠</div>
+        <div class="skill-name">STATISTICS</div>
+      </div>
+      <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">📈</div>
+        <div class="skill-name">POWER BI</div>
+      </div>
+      <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">🗃️</div>
+        <div class="skill-name">SQL</div>
+      </div>
+      <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">🐍</div>
+        <div class="skill-name">PYTHON</div>
+      </div>
+      <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">🐼</div>
+        <div class="skill-name">PANDAS</div>
+      </div>
+       <div class="skill-item" role="listitem" tabindex="0">
+        <div class="skill-icon" aria-hidden="true">🔢</div>
+        <div class="skill-name">NUMPAY</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-title">
+    <h3 id="projects-title">Projects</h3>
+    <div class="projects-grid">
+      <article class="project-card" tabindex="0" aria-label="Project: Portfolio Website">
+        <img class="project-image" src="https://images.pexels.com/photos/3182744/pexels-photo-3182744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=180" alt="Screenshot of Portfolio Website project" />
+        <div class="project-content">
+          <h4 class="project-title">Portfolio Website</h4>
+          <p class="project-desc">A modern, responsive portfolio website built from scratch with HTML, CSS, and JavaScript.</p>
+          <a href="#" class="project-link" aria-label="View Portfolio Website project details">View Project</a>
+        </div>
+      </article>
+      <article class="project-card" tabindex="0" aria-label="Project: ToDo List App">
+        <img class="project-image" src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=180" alt="Screenshot of ToDo List App project" />
+        <div class="project-content">
+          <h4 class="project-title">ToDo List App</h4>
+          <p class="project-desc">Interactive task management app leveraging localStorage for persistence and smooth animations.</p>
+          <a href="#" class="project-link" aria-label="View ToDo List App project details">View Project</a>
+        </div>
+      </article>
+      <article class="project-card" tabindex="0" aria-label="Project: Weather Dashboard">
+        <img class="project-image" src="https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=180" alt="Screenshot of Weather Dashboard project" />
+        <div class="project-content">
+          <h4 class="project-title">Weather Dashboard</h4>
+          <p class="project-desc">A dynamic weather forecast dashboard using a public API, built with responsive and clean design.</p>
+          <a href="#" class="project-link" aria-label="View Weather Dashboard project details">View Project</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title">
+  <h3 id="contact-title">Contact Me</h3>
+  <form 
+    action="https://formspree.io/f/xwpbarbe" 
+    method="POST" 
+    aria-describedby="contact-desc">
+
+    <p id="contact-desc" class="about-text">
+      Feel free to reach out for collaborations or just a friendly hello!
+    </p>
+
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+
+    <input type="submit" value="Send Message">
+
+  </form>
+</section>
+
+</main>
+
+<footer>
+  &copy; 2025 MOHD RAHMAT. All rights reserved.
+</footer>
+
+<script>
+  // Contact form validation and mock submission
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    status.style.display = 'none';
+    status.textContent = '';
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !email || !message) {
+      status.style.display = 'block';
+      status.textContent = 'Please fill in all fields before sending.';
+      return;
+    }
+    if (!validateEmail(email)) {
+      status.style.display = 'block';
+      status.textContent = 'Please enter a valid email address.';
+      return;
+    }
+
+    // Mock submission
+    status.style.color = '#4caf50';
+    status.style.display = 'block';
+    status.textContent = 'Thank you for your message! I will get back to you soon.';
+    form.reset();
+  });
+
+  function validateEmail(email) {
+    // Simple basic email regex validation
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+</script>
+</body>
+</html>
